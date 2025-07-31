@@ -1,0 +1,68 @@
+"use client";
+
+import { MasterContext } from "@/context/MasterContext";
+import React, { useContext } from "react";
+import { FaCheck } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
+import { LuTicket } from "react-icons/lu";
+
+const ListaOrdenes = ({ listaOrdenes }) => {
+  const { setOpenModalPedidoSeleccionado, setPedidoSeleccionadoMaster } =
+    useContext(MasterContext);
+
+  const coloresRandom = [
+    "bg-amber-400/50",
+    "bg-green-600/50",
+    "bg-red-600/50",
+    "bg-blue-500/50",
+    "bg-purple-500/50",
+    "bg-pink-500/50",
+    "bg-yellow-500/50",
+    "bg-teal-500/50",
+    "bg-indigo-500/50",
+    "bg-gray-500/50",
+    "bg-orange-500/50",
+    "bg-lime-500/50",
+    "bg-cyan-500/50",
+    "bg-emerald-500/50",
+    "bg-rose-500/50",
+    "bg-violet-500/50",
+    "bg-fuchsia-500/50",
+    "bg-sky-500/50",
+    "bg-amber-500/50",
+  ];
+
+  const getRandomColor = () => {
+    return coloresRandom[Math.floor(Math.random() * coloresRandom.length)];
+  };
+
+  return (
+    <div className="flex gap-4 overflow-x-auto pb-2">
+      {listaOrdenes.map((orden, index) => {
+        const colorFondo = getRandomColor();
+        return (
+          <div
+            onClick={() => {
+              setPedidoSeleccionadoMaster(orden);
+              setOpenModalPedidoSeleccionado(true);
+            }}
+            key={index}
+            className={`min-w-[150px] rounded-full shadow-lg px-4 gap-2 p-3 font-semibold flex items-center justify-center cursor-pointer select-none ${
+              orden.estado === "pendiente"
+                ? "bg-white text-zinc-700"
+                : orden.estado === "terminado"
+                ? "bg-green-100 text-green-600"
+                : "bg-red-200 text-red-600"
+            }`}
+          >
+            {orden.estado === "terminado" && <FaCheck />}
+            {orden.estado === "cancelado" && <IoClose />}
+            {orden.estado === "pendiente" && <LuTicket />}#{orden.pedido}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default ListaOrdenes;
