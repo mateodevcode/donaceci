@@ -118,7 +118,7 @@ const CardProducto = ({ productos }) => {
               <span className="text-gray-600 text-xs font-semibold font-roboto">
                 {formatoDinero(item.precio)}
               </span>
-              <button
+              {/* <button
                 className="flex items-center justify-center bg-amber-400 rounded-full w-7 h-7 cursor-pointer select-none active:scale-95 duration-75"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -134,7 +134,7 @@ const CardProducto = ({ productos }) => {
                 }}
               >
                 <FiPlus className="text-xl text-white" />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

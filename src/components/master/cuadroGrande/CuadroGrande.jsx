@@ -8,8 +8,6 @@ import { VscListSelection } from "react-icons/vsc";
 import { rutas_master } from "@/data/rutas_master";
 import { normalizarOrdenes } from "@/utils/normalizarOrdenes";
 import OrdenarCategorias from "./reordenarCategoria/OrdenarCategorias";
-import { RiFunctionAddLine } from "react-icons/ri";
-import { getId } from "@qrvey/id-generator";
 import MasterOrdenes from "./masterOrdenes/MasterOrdenes";
 import OrdenesVivas from "./ordenesVivas/OrdenesVivas";
 import Delivery from "./delivery/Delivery";
@@ -36,7 +34,7 @@ const CuadroGrande = () => {
       {/* Barra de búsqueda */}
 
       <div className="w-full flex items-center justify-between">
-        <div className="mb-4 flex items-center gap-4">
+        {/* <div className="mb-4 flex items-center gap-4">
           <button
             className="py-3 px-4 rounded-full bg-white shadow-md hover:bg-zinc-100 transition-colors flex md:hidden cursor-pointer select-none active:scale-95 duration-150"
             onClick={() => setOpenModalMenuMaster(!openModalMenuMaster)}
@@ -86,9 +84,9 @@ const CuadroGrande = () => {
               />
             </div>
           )}
-        </div>
+        </div> */}
 
-        <button
+        {/* <button
           className="flex items-center gap-2 mb-4 bg-white rounded-full shadow-md px-4 py-3 hover:bg-zinc-100 transition-colors cursor-pointer select-none active:scale-95 duration-150"
           onClick={() => {
             setOpenModalNuevoPedido(true);
@@ -108,7 +106,7 @@ const CuadroGrande = () => {
         >
           <RiFunctionAddLine className="text-xl" />
           <span className="font-semibold hidden md:flex">Nuevo pedido</span>
-        </button>
+        </button> */}
       </div>
 
       {/* Lista de órdenes */}
@@ -123,7 +121,7 @@ const CuadroGrande = () => {
           );
         })}
 
-        {rutaSelect === "inicio" && (
+        {/* {rutaSelect === "inicio" && (
           <MasterOrdenes listaOrdenes={listaOrdenes} busqueda={busqueda} />
         )}
 
@@ -137,7 +135,7 @@ const CuadroGrande = () => {
 
         {rutaSelect === "mesas" && (
           <Mesas listaOrdenes={listaOrdenes} busqueda={busqueda} />
-        )}
+        )} */}
 
         {rutaSelect === "disponibilidad" && <Disponibilidad />}
 

@@ -6,17 +6,22 @@ export default withAuth(
     const { pathname } = req.nextUrl;
     const rol = req.nextauth.token?.rol;
 
-    // Si no tiene cargo, redirige a inicio
+    // ❌ Bloquea por completo el acceso a /admin para todos
+    if (pathname.startsWith("/admin")) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    // ✅ Si no tiene rol, redirige a inicio
     if (!rol) {
       return NextResponse.redirect(new URL("/", req.url));
     }
 
-    // Regla para 'empleado': no puede entrar a rutas que contengan /admin
+    // 🚫 Empleado no puede entrar a rutas que contengan /admin (ya cubierto arriba)
     if (rol === "empleado" && pathname.includes("/admin")) {
       return NextResponse.redirect(new URL("/", req.url));
     }
 
-    // Regla para 'normal': no puede entrar a rutas con /admin ni /mainfud
+    // 🚫 Usuario no puede entrar a /admin ni /master
     if (
       rol === "usuario" &&
       (pathname.includes("/admin") || pathname.includes("/master"))
@@ -24,7 +29,7 @@ export default withAuth(
       return NextResponse.redirect(new URL("/", req.url));
     }
 
-    // 'admin' puede acceder a todo
+    // ✅ Admin puede acceder a todo excepto /admin (ya bloqueado arriba)
     return NextResponse.next();
   },
   {
@@ -34,7 +39,6 @@ export default withAuth(
   }
 );
 
-// Aplica el middleware solo a estas rutas
 export const config = {
   matcher: ["/master/:path*", "/admin/:path*"],
 };

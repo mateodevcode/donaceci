@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 export default function ModalMenu({ isOpen, onClose, children }) {

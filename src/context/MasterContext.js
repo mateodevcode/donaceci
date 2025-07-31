@@ -13,7 +13,7 @@ export const MasterProvider = ({ children }) => {
     useState(false);
   const [pedidoSeleccionadoMaster, setPedidoSeleccionadoMaster] =
     useState(null);
-  const [rutaSelect, setRutaSelect] = useState("inicio");
+  const [rutaSelect, setRutaSelect] = useState("disponibilidad");
   const [openModalMenuMaster, setOpenModalMenuMaster] = useState(false);
   const [openModalCrearCategoria, setOpenModalCrearCategoria] = useState(false);
   const [editarCategoria, setEditarCategoria] = useState(null);

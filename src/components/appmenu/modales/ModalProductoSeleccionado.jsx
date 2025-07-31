@@ -227,7 +227,7 @@ const ModalProductoSeleccionado = () => {
                 <h2 className="text-2xl font-semibold">
                   {productoSeleccionadoMenu.nombre}
                 </h2>
-                <div className="flex items-center gap-2 pl-2">
+                {/* <div className="flex items-center gap-2 pl-2">
                   <span
                     className={`w-6 h-6 p-1 rounded-full flex items-center justify-center select-none active:scale-95 duration-75 ${
                       contador <= 1
@@ -253,7 +253,7 @@ const ModalProductoSeleccionado = () => {
                   >
                     <FiPlus className="text-xl text-white" />
                   </span>
-                </div>
+                </div> */}
               </div>
               <p className="text-gray-600 mt-2 text-sm">
                 {productoSeleccionadoMenu.descripcion ||
@@ -293,55 +293,57 @@ const ModalProductoSeleccionado = () => {
                 </div>
               )}
               {/* Similares */}
-              <div className="mt-4">
-                <h3 className="text-xl font-semibold">Similares</h3>
-                <div className="space-y-2 mt-2">
-                  {sugerencias.map((item, index) => (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        setProductoSeleccionadoMenu(item);
-                      }}
-                      className="flex items-center justify-between gap-4 bg-white p-4 rounded-md cursor-pointer select-none active:scale-95 duration-75 hover:bg-zinc-50"
-                    >
-                      <div className="flex items-center gap-4">
-                        <Image
-                          src={item.image}
-                          alt={item.nombre}
-                          width={200}
-                          height={200}
-                          className="w-12 h-12 rounded-full"
-                        />
-                        <div className="flex flex-col">
-                          <h4 className="font-semibold">
-                            {formatoNombre(item.nombre, 20)}
-                          </h4>
-                          <p className="text-sm text-gray-600">
-                            {formatoDinero(item.precio)}
-                          </p>
-                        </div>
-                      </div>
-
-                      <button
-                        className="flex items-center justify-center bg-amber-400 rounded-full w-7 h-7 cursor-pointer select-none active:scale-95 duration-75"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const estaEnRango1 = bloquearAppMenu(11, 30, 17, 0);
-                          const estaEnRango2 = bloquearAppMenu(17, 0, 23, 0);
-
-                          if (!estaEnRango1 && !estaEnRango2) {
-                            setOpenModalBloquearAppMenu(true);
-                            return;
-                          }
-                          handleClickAñadirItem(item);
+              {sugerencias.length > 0 && (
+                <div className="mt-4">
+                  <h3 className="text-xl font-semibold">Similares</h3>
+                  <div className="space-y-2 mt-2">
+                    {sugerencias.map((item, index) => (
+                      <div
+                        key={index}
+                        onClick={() => {
+                          setProductoSeleccionadoMenu(item);
                         }}
+                        className="flex items-center justify-between gap-4 bg-white p-4 rounded-md cursor-pointer select-none active:scale-95 duration-75 hover:bg-zinc-50"
                       >
-                        <FiPlus className="text-xl text-white" />
-                      </button>
-                    </div>
-                  ))}
+                        <div className="flex items-center gap-4">
+                          <Image
+                            src={item.image}
+                            alt={item.nombre}
+                            width={200}
+                            height={200}
+                            className="w-12 h-12 rounded-full"
+                          />
+                          <div className="flex flex-col">
+                            <h4 className="font-semibold">
+                              {formatoNombre(item.nombre, 20)}
+                            </h4>
+                            <p className="text-sm text-gray-600">
+                              {formatoDinero(item.precio)}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* <button
+                          className="flex items-center justify-center bg-amber-400 rounded-full w-7 h-7 cursor-pointer select-none active:scale-95 duration-75"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const estaEnRango1 = bloquearAppMenu(11, 30, 17, 0);
+                            const estaEnRango2 = bloquearAppMenu(17, 0, 23, 0);
+
+                            if (!estaEnRango1 && !estaEnRango2) {
+                              setOpenModalBloquearAppMenu(true);
+                              return;
+                            }
+                            handleClickAñadirItem(item);
+                          }}
+                        >
+                          <FiPlus className="text-xl text-white" />
+                        </button> */}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Footer Fijo */}
@@ -354,7 +356,7 @@ const ModalProductoSeleccionado = () => {
                   {formatoDinero(productoSeleccionadoMenu.precio)}
                 </span>
               </div>
-              <button
+              {/* <button
                 className="bg-amber-400 text-white px-4 py-2 rounded text-sm font-semibold"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -369,7 +371,7 @@ const ModalProductoSeleccionado = () => {
                 }}
               >
                 Agregar al carrito
-              </button>
+              </button> */}
             </div>
           </motion.div>
         </div>

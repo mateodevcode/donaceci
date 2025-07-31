@@ -14,14 +14,14 @@ export const enalces = [
     icon: <BsFillPersonFill />,
     text: "Perfil",
   },
-  {
-    icon: <RiFileList3Line />,
-    text: "Pedido",
-  },
-  {
-    icon: <RiFileListLine />,
-    text: "Historial de Pedidos",
-  },
+  // {
+  //   icon: <RiFileList3Line />,
+  //   text: "Pedido",
+  // },
+  // {
+  //   icon: <RiFileListLine />,
+  //   text: "Historial de Pedidos",
+  // },
   {
     icon: <IoWalletOutline />,
     text: "Pagos",
@@ -34,8 +34,8 @@ export const enalces = [
   //   icon: <LuQrCode />,
   //   text: "Escanear QR",
   // },
-  {
-    icon: <FaCommentDots />,
-    text: "Soporte",
-  },
+  // {
+  //   icon: <FaCommentDots />,
+  //   text: "Soporte",
+  // },
 ];

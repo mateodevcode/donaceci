@@ -27,7 +27,7 @@ const Header = () => {
         <BsList className="text-3xl font-semibold text-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-300 cursor-pointer select-none hover:text-zinc-600" />
       </div>
 
-      <div className="flex items-center gap-2 w-24 justify-end">
+      {/* <div className="flex items-center gap-2 w-24 justify-end">
         <PaginaQR classname="bg-white hover:bg-white/50 w-9 h-9 flex items-center justify-center rounded-md shadow-lg cursor-pointer select-none active:scale-95 duration-75 text-xl text-zinc-800" />
         <div
           className={`w-10 h-10   rounded-full flex items-center justify-center shadow-lg cursor-pointer select-none active:scale-95 duration-75 relative ${
@@ -42,7 +42,7 @@ const Header = () => {
             <AnimateNumber value={totalUnidades} />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

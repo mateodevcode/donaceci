@@ -51,7 +51,7 @@ const ModalConfiguracion = () => {
           <div></div>
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <div className="w-10/12 md:w-[450px] px-8 py-4 flex items-center justify-between text-zinc-800 mt-10 font-semibold">
+          {/* <div className="w-10/12 md:w-[450px] px-8 py-4 flex items-center justify-between text-zinc-800 mt-10 font-semibold">
             {isConnected ? <span>Conectado</span> : <span>Desconectado</span>}
             <div
               className={`w-4 h-4 rounded-full ${
@@ -60,9 +60,9 @@ const ModalConfiguracion = () => {
                   : "bg-red-600 border-[2px] border-red-200"
               }`}
             ></div>
-          </div>
+          </div> */}
           <SwitchSonido />
-          <SwitchParaLlevar />
+          {/* <SwitchParaLlevar /> */}
         </div>
       </div>
     </div>,

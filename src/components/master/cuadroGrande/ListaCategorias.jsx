@@ -37,7 +37,7 @@ const ListaCategorias = () => {
 
   return (
     <div className="flex gap-4 overflow-x-auto pb-2">
-      {categorias.map((categoria, index) => {
+      {categorias?.map((categoria, index) => {
         const colorFondo = getRandomColor();
         return (
           <div
