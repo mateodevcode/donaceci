@@ -23,7 +23,7 @@ import { actualizar_usuario } from "@/lib/socket/usuario_socket";
 import ModalHistorialPedidos from "./modales/modalHistorialPedidos/ModalHistorialPedidos";
 import Footer from "./footer/Footer";
 import Buscar from "./buscar/Buscar";
-import BannerPromocion from "./banner-promocion/BannerPromocion";
+// import BannerPromocion from "./banner-promocion/BannerPromocion";
 import Header from "./header/Header";
 import Saludo from "./saludo/Saludo";
 import Categoria from "./categoria/Categoria";

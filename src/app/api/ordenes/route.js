@@ -1,8 +1,12 @@
 import { connectMongoDB } from "@/lib/db";
 import Orden from "@/models/orden";
 import { NextResponse } from "next/server";
+import { protectApi } from "@/lib/protecApi";
 
 export async function GET(req) {
+  const token = await protectApi(req);
+  if (token instanceof NextResponse) return token; // <- si hubo error, responder
+
   try {
     await connectMongoDB();
     const ordenes = await Orden.find({});

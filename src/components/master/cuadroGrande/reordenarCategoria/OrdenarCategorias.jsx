@@ -14,7 +14,6 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { MainfudContext } from "@/context/MainfudContext";
-import { reordenar_categorias } from "@/lib/socket/orden_socket";
 import { toast } from "sonner";
 
 function SortableItem({ position, name }) {
@@ -80,7 +79,31 @@ export default function OrdenarCategorias() {
       position: i + 1,
     }));
 
-    reordenar_categorias(ordenadas); // Emitir el evento al servidor
+    try {
+      const response = await fetch("/api/ordenar-categorias", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ordenadas),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Categorías reordenadas:", data);
+        setCategorias(data.categorias); // Actualizar el estado con las categorías reordenadas
+      }
+    } catch (error) {
+      toast.error("Error al reordenar categorías", {
+        duration: 3000,
+        position: "top-right",
+        style: {
+          background: "#FEE2E2", // Light red background
+          color: "#B91C1C", // Dark red text
+          borderColor: "#B91C1C", // Dark red border
+        },
+      });
+      return;
+    }
     toast.success("Categoria reordenada correctamente", {
       duration: 3000,
       position: "top-right",

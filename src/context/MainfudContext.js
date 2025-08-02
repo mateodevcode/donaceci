@@ -208,54 +208,90 @@ export const MainfudProvider = ({ children }) => {
     localStorage.setItem("usuarioStorage", JSON.stringify(formDatosUsuario));
   }, [formDatosUsuario]);
 
-  // conectar el socket al servidor
+  /////// plan basico de carga de datos //////
   useEffect(() => {
-    if (!socket.connected) socket.connect();
-
-    socket.on("connect", () => {
-      console.log("Conectado:", socket.id);
-      setIsConnected(true); // Aquí marcas que está conectado
-      socket.emit("client:getordenes");
-      socket.emit("client:getproductos");
-    });
-
-    socket.on("server:ordenes", setOrdenes);
-    socket.on("server:productos", setProductos);
-
-    socket.on("server:orden_creada", (data) => {
-      setOrdenPendiente(data);
-      setIdOrdenCreadaPendiente(data._id);
-    });
-
-    socket.on("server:actualizar_orden", (data) => {
-      setOrdenPendiente(data);
-    });
-
-    socket.on("server:actualizar_usuario", (data) => {
-      setUsuario(data);
-    });
-
-    socket.on("server:reordenar_categorias", (categorias) => {
-      setCategorias(categorias);
-    });
-
-    socket.on("disconnect", () => {
-      console.log("Desconectado:", socket.id);
-      setIsConnected(false); // Aquí marcas que está desconectado
-    });
-
-    return () => {
-      socket.off("connect");
-      socket.off("server:ordenes");
-      socket.off("server:productos");
-      socket.off("server:orden_creada");
-      socket.off("server:reordenar_categorias");
-      socket.off("server:orden_creada_admin");
-      socket.off("server:actualizar_orden");
-      socket.off("server:actualizar_usuario");
-      socket.off("disconnect");
+    const cargarProductos = async () => {
+      try {
+        const response = await fetch("/api/productos");
+        if (!response.ok) {
+          throw new Error("Error al cargar los productos");
+        }
+        const data = await response.json();
+        setProductos(data);
+      } catch (error) {
+        console.error("🚨 Error al cargar los productos:", error);
+      }
     };
+    cargarProductos();
   }, []);
+
+  useEffect(() => {
+    const cargarCategorias = async () => {
+      try {
+        const response = await fetch("/api/categorias");
+        if (!response.ok) {
+          throw new Error("Error al cargar las categorias");
+        }
+        const data = await response.json();
+        setCategorias(data);
+      } catch (error) {
+        console.error("🚨 Error al cargar las categorias:", error);
+      }
+    };
+    cargarCategorias();
+  }, []);
+
+  /////// plan basico de carga de datos //////
+
+  /// plan avanzado de carga de datos ////////
+  // conectar el socket al servidor
+  // useEffect(() => {
+  //   if (!socket.connected) socket.connect();
+
+  //   socket.on("connect", () => {
+  //     console.log("Conectado:", socket.id);
+  //     setIsConnected(true); // Aquí marcas que está conectado
+  //     socket.emit("client:getordenes");
+  //     socket.emit("client:getproductos");
+  //   });
+
+  //   socket.on("server:ordenes", setOrdenes);
+  //   socket.on("server:productos", setProductos);
+
+  //   socket.on("server:orden_creada", (data) => {
+  //     setOrdenPendiente(data);
+  //     setIdOrdenCreadaPendiente(data._id);
+  //   });
+
+  //   socket.on("server:actualizar_orden", (data) => {
+  //     setOrdenPendiente(data);
+  //   });
+
+  //   socket.on("server:actualizar_usuario", (data) => {
+  //     setUsuario(data);
+  //   });
+
+  //   socket.on("server:reordenar_categorias", (categorias) => {
+  //     setCategorias(categorias);
+  //   });
+
+  //   socket.on("disconnect", () => {
+  //     console.log("Desconectado:", socket.id);
+  //     setIsConnected(false); // Aquí marcas que está desconectado
+  //   });
+
+  //   return () => {
+  //     socket.off("connect");
+  //     socket.off("server:ordenes");
+  //     socket.off("server:productos");
+  //     socket.off("server:orden_creada");
+  //     socket.off("server:reordenar_categorias");
+  //     socket.off("server:orden_creada_admin");
+  //     socket.off("server:actualizar_orden");
+  //     socket.off("server:actualizar_usuario");
+  //     socket.off("disconnect");
+  //   };
+  // }, []);
 
   // Close Nueva logica para manejar el socket
 

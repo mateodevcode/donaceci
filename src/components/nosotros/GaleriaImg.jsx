@@ -9,12 +9,10 @@ const GaleriaImg = () => {
     "/productos/entrda-doña-ceci.jpeg",
     "/productos/local-doña-ceci-1.png",
     "/productos/local-doña-ceci-2.jpg",
-
     "/productos/crepes-section-1.png",
     "/productos/carne-doña-ceci.jpg",
     "/productos/pechuga-doña-ceci.jpg",
     "/productos/crepes-nosotros.png",
-
     "/productos/crema-doña-ceci.jpg",
   ];
 

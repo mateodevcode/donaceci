@@ -2,26 +2,51 @@
 
 import { MainfudContext } from "@/context/MainfudContext";
 import { MasterContext } from "@/context/MasterContext";
-import { actualizar_producto_disponibilidad } from "@/lib/socket/producto_socket";
+// import { actualizar_producto_disponibilidad } from "@/lib/socket/producto_socket";
 import Image from "next/image";
 import React, { useContext } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
+import { toast } from "sonner";
 
 const ListaProductosGrid = () => {
   const { categoriaSeleccionada } = useContext(MasterContext);
-  const { productos } = useContext(MainfudContext);
+  const { productos, setProductos } = useContext(MainfudContext);
 
   const listaProductos = productos?.filter(
     (producto) => producto.categoria === categoriaSeleccionada
   );
 
-  const cambiarDisponibilidad = (producto, disponibilidad) => {
+  const cambiarDisponibilidad = async (producto, disponibilidad) => {
     const updatedProducto = {
       ...producto,
       disponibilidad: disponibilidad,
     };
-    actualizar_producto_disponibilidad(producto._id, updatedProducto);
+
+    try {
+      const response = await fetch(`/api/productos/${producto._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProducto),
+      });
+      if (response.ok) {
+        setProductos((prevProductos) =>
+          prevProductos.map((prod) =>
+            prod._id === producto._id ? { ...prod, disponibilidad } : prod
+          )
+        );
+        toast.success(`Producto actualizado.`);
+      }
+    } catch (error) {
+      toast.error(
+        "Error al actualizar la disponibilidad del producto. Por favor, inténtalo de nuevo.",
+        {
+          description: error.message,
+        }
+      );
+    }
   };
 
   return (
