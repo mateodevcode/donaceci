@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 import { protectApi } from "@/lib/protecApi";
 
 export async function GET(req) {
-  const token = await protectApi(req);
-  if (token instanceof NextResponse) return token; // <- si hubo error, responder
+  // const token = await protectApi(req);
+  // if (token instanceof NextResponse) return token;
 
   try {
     await connectMongoDB();
